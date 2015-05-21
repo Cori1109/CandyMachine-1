@@ -20,6 +20,7 @@ public class SnoepUI implements ActionListener {
     void maakWindow(){
         JFrame frame = new JFrame("Leon's Super Snoepautomaat! Voor al uw lekkere snacks");
         frame.setSize(600,240);
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(new BorderLayout());
 
@@ -35,7 +36,7 @@ public class SnoepUI implements ActionListener {
         }
 
         automaatScherm = new JLabel(" ");
-        automaatScherm.setPreferredSize(new Dimension(200, 30));
+        automaatScherm.setPreferredSize(new Dimension(300, 30));
         automaatScherm.setBorder(BorderFactory.createLineBorder(Color.black));
         frame.add(automaatScherm, BorderLayout.LINE_START);
 
@@ -43,7 +44,7 @@ public class SnoepUI implements ActionListener {
         betaalKnop.addActionListener(this);
         frame.add(betaalKnop, BorderLayout.CENTER);
 
-        geldInvoer = new JTextField(20);
+        geldInvoer = new JTextField(10);
         frame.add(geldInvoer, BorderLayout.LINE_END);
 
         voorraadLabel = new JLabel(" Voorraad:");

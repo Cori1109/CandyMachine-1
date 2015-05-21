@@ -34,6 +34,8 @@ public class Geld {
         for(int i = 0; i < geldLijst.length; i++){
             // als het wisselgeld is betaald: laat de geldText zien en ververs de voorraad
             if (wisselGeld == 0){
+                Snoep.snoepPrijs = 0;
+                Snoep.betaal("0");
                 SnoepUI.automaatScherm.setText(geldText + "euro terug");
                 SnoepUI.voorraadLabel.setText(" Voorraad:");
                 Snoep.showVoorraad();

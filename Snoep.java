@@ -10,6 +10,7 @@ public class Snoep {
 
     // Een snoepprijs variable die je overal kan gebruiken
     public static int snoepPrijs;
+    public static String gekozenSnoep;
 
 
     // Nieuwe snack constructor
@@ -47,8 +48,8 @@ public class Snoep {
         for(Snoep snoep : SnoepLijst){
             if (naam.equals(snoep.Naam) && snoep.Voorraad != 0){
                 snoepPrijs = snoep.Prijs;
-                SnoepUI.automaatScherm.setText("Te betalen: €" + (float) snoepPrijs / 100);
-                snoep.Voorraad--;
+                gekozenSnoep = snoep.Naam;
+                SnoepUI.automaatScherm.setText("Te betalen: €" + (float) snoepPrijs / 100 + (snoepPrijs == 5 ? ", \n" : "0, \n"));
                 return 1;
             }
 
@@ -80,14 +81,22 @@ public class Snoep {
         // genoeg betaald
         if (betaald == prijs){
             SnoepUI.automaatScherm.setText("U heeft betaald");
+            for (Snoep snoep : SnoepLijst){
+                if (snoep.Naam == gekozenSnoep){
+                    gekozenSnoep = null;
+                    snoep.Voorraad--;
+                }
+            }
             SnoepUI.voorraadLabel.setText(" Voorraad:");
             showVoorraad();
         }
 
+        if(prijs == 0) return 0;
+
         // te weinig betaald, vraag om meer geld
         else if (betaald < prijs) {
             snoepPrijs = prijs - betaald;
-            SnoepUI.automaatScherm.setText("Te betalen: €" + (float) snoepPrijs / 100);
+            SnoepUI.automaatScherm.setText("Te betalen: €" + (float) snoepPrijs / 100 + (prijs - betaald == 5 ? ", \n" : "0, \n"));
         }
 
         // te veel betaald, call de geldTerug functie om het terug te geven geld te berekenen
